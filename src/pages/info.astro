@@ -1,0 +1,186 @@
+---
+import PageLayout from '../layouts/BaseLayout.astro'
+import Section from '../components/Section.astro'
+import Card from '../components/Card.astro'
+import SkillLayout from '../components/SkillLayout.astro'
+
+
+import { Image } from 'astro:assets'
+import astro from '../assets/about-astro.jpg'
+
+import { getAllPosts, sortMDByDate } from '@/utils'
+
+
+const about =
+	'Full Stack Engineer focused on building products that have a useful context and help users doing complex tasks in a simple way.'
+const summary =
+	'As a Full Stack Engineer, I have successfully taken multiple features from 0 to 1. Currently, I work mostly with JavaScript, Angular, React, Node.js, Java, and SQL. I have over 3 years of experience in working with large and small projects.'
+
+const languages = ['Italian', 'English']
+const frontend = [
+	'JS',
+	'Typescript',
+	'CSS',
+	'TailwindCSS',
+	'React',
+	'SolidJS',
+	'NextJS',
+	'Astro',
+	'SolidStart'
+]
+const backend = ['C#', 'Java', 'Go', '.NET MVC', 'Go Fiber', 'Node.js']
+const others = ['SQL', 'React Native']
+const experiences = [
+	{
+		company: 'Sogei S.p.A.',
+		link: 'https://sogei.it',
+		badges: ['Rome'],
+		title: 'Full Stack Developer',
+		start: '2021',
+		end: new Date().getFullYear().toString(),
+		tech: 'Java, JavaScript, TypeScript, React, SQL, HTML, CSS',
+		description: 'Implemented new features, deployed new versions of various apps.'
+	},
+	{
+		company: 'BSA S.R.L',
+		link: 'https://bsa-assicurazioni.it/',
+		badges: ['Rome'],
+		title: 'Full Stack Developer',
+		start: '2021',
+		end: '2021',
+		tech: 'C#, JavaScript, TypeScript, SQL, ASP.NET MVC, HTML, CSS',
+		description: 'Helped to rebuild a management app from scratch. Built new pages for the app.'
+	},
+	{
+		company: 'Infoservice Srl',
+		link: 'https://www.infos.it/',
+		badges: ['Rome'],
+		title: 'Full-Stack Developer .NET',
+		start: '2020',
+		end: '2020',
+		tech: 'C#, JavaScript, TypeScript, SQL, ASP.NET MVC, HTML, CSS',
+		description: 'Helped in the development of a new feature, fixed bugs.'
+	}
+]
+const educations = [
+	{
+		school: 'I.I.S G. Marconi',
+		degree: 'High school degree in IT',
+		start: '2015',
+		end: '2020'
+	}
+]
+
+
+const MAX_POSTS = 10
+const allPosts = await getAllPosts()
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
+---
+
+<PageLayout meta={{ title: 'Info' }}>
+	<div class='flex w-full flex-col gap-y-10'>
+		<section class='flex flex-col items-center gap-y-7'>
+			<Image
+				src={astro}
+				alt='profile photo'
+				class='h-28 w-auto rounded-full bg-[#FFBE98] p-2'
+				loading='eager'
+			/>
+
+			<div class='flex flex-col items-center gap-y-4'>
+				<h1 class='text-3xl font-bold'>Info</h1>
+			</div>
+		</section>
+
+		<Section title='About'>
+			<p class='text-muted-foreground'>
+                {about}<br />
+				{summary}
+				
+			</p>
+		</Section>
+		
+
+		<Section title='Experience'>
+			{
+				experiences.map((x) => (
+					<Card
+						heading={x.company}
+						subheading={x.title}
+						date={x.start + ' -> ' + x.end + ' - ' + x.badges[0]}
+						imagePath='/src/assets/about-astro.jpg'
+						altText='Lorem, ipsum dolor sit'
+						imageClass='h-12 w-auto md:-left-16'
+					>
+						<ul class='ml-4 list-disc text-muted-foreground'>
+							<li>
+								{x.description}
+
+								<li>{x.tech}</li>
+							</li>
+						</ul>
+					</Card>
+				))
+			}
+		</Section>
+
+		<Section title='Education'>
+			{
+				educations.map((x) => (
+					<Card
+						heading={x.school}
+						subheading={x.degree}
+						date={x.start + ' - ' + x.end}
+						imagePath='/src/assets/about-astro.jpg'
+						altText='Lorem, ipsum dolor sit'
+						imageClass='h-12 w-auto md:-left-16'
+					/>
+				))
+			}
+		</Section>
+
+		
+		<!-- <Section title='Certifications'>
+			<Card
+				as='a'
+				heading='Lorem ipsum, dolor sit amet consectetur adipisicing.'
+				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta magni consequuntur corrupti.'
+				date='Mar 2024 - Mar 2024'
+				imagePath='/src/assets/about-astro.png'
+				altText='Lorem, ipsum dolor sit'
+				imageClass='h-11 w-auto md:-left-16'
+				href='https://www.google.com'
+			/>
+			<Card
+				as='a'
+				heading='Lorem ipsum, dolor sit amet'
+				subheading='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dicta.'
+				date='Mar 2029 - Mar 2032'
+				imagePath='/src/assets/about-astro.png'
+				altText='Lorem, ipsum dolor sit'
+				imageClass='h-11 w-auto md:-left-16'
+				href='https://www.google.com'
+			/>
+		</Section> -->
+
+		<Section title='Skills'>
+			<SkillLayout title='Languages' skills={languages} />
+			<SkillLayout title='Frontend' skills={frontend} />
+			<SkillLayout title='Backend' skills={backend} />
+			<SkillLayout title='Others' skills={others} />
+		</Section>
+	</div>
+	<a
+		href='mailto:rik.eudizi@gmail.com'
+		class='mt-16 flex flex-row items-center gap-x-3 rounded-3xl border border-input px-4 py-2 text-sm shadow-sm transition-all hover:shadow-md'
+	>
+		<span class='relative flex items-center justify-center'>
+			<span
+				class='absolute inline-flex h-2 w-2 animate-ping rounded-full border border-green-400 bg-green-400 opacity-75'
+			></span>
+			<span class='relative inline-flex h-2 w-2 rounded-full bg-green-400'></span>
+		</span>
+
+		<p class='font-medium'>Contact me</p>
+	</a>
+</PageLayout>

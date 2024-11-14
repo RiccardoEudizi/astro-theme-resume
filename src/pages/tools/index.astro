@@ -28,13 +28,7 @@ const PRODUCTIVITY = [
 		iconPath: 'notion',
 		iconBgColour: '#EFEFEE'
 	},
-	{
-		name: 'Obsidian',
-		description: 'Long-form Writing',
-		href: 'https://obsidian.md/',
-		iconPath: 'obsidian',
-		iconBgColour: '#7A3EE8'
-	}
+	
 ]
 
 const DEVELOPMENT = [
@@ -46,12 +40,20 @@ const DEVELOPMENT = [
 		iconBgColour: '#2C2C32'
 	},
 	{
-		name: 'ChatGPT',
-		description: 'AI',
-		href: 'https://chat.openai.com/',
-		iconPath: 'chatgpt',
-		iconBgColour: '#06A67F'
-	}
+		name: 'Hugging Face',
+		description: 'ML Models',
+		href: 'https://huggingface.co/',
+		iconPath: 'huggingface',
+		iconBgColour: '#2C2C32'
+	},
+	{
+		name: 'PocketBase',
+		description: 'Easy DB & Auth',
+		href: 'https://pocketbase.io/',
+		iconPath: 'pocketbase',
+		iconBgColour: '#2C2C32'
+	},
+
 ]
 ---
 
@@ -79,7 +81,6 @@ const DEVELOPMENT = [
 				<p>Tools and software I use daily</p>
 			</div>
 
-			<ToolSection title='Design' tools={DESIGN} />
 			<ToolSection title='Productivity' tools={PRODUCTIVITY} />
 			<ToolSection title='Development' tools={DEVELOPMENT} />
 		</div>
